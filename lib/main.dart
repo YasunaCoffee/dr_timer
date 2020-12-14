@@ -61,13 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
               icon: Icon(
-                FontAwesomeIcons.music,
+                FontAwesomeIcons.volumeUp,
                 color: Colors.black,
               ),
               iconSize: 30.0,
               onPressed: () {
                 setState(() {
-                  // playSounds();
                   Alert(
                     style: alertStyle,
                     context: context,
@@ -86,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       )
                     ],
                   ).show();
+                  playSounds();
                 });
               })
         ],
