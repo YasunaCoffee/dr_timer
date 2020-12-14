@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_count_down/constants.dart';
 import 'package:the_count_down/addButton.dart';
 import 'package:the_count_down/iconButton.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() {
   runApp(CountDown());
@@ -33,6 +34,26 @@ class _MyHomePageState extends State<MyHomePage> {
     player.play('timeup.wav');
   }
 
+  var alertStyle = AlertStyle(
+    backgroundColor: Colors.white54,
+    animationType: AnimationType.grow,
+    isCloseButton: false,
+    isOverlayTapDismiss: false,
+    descStyle: TextStyle(fontWeight: FontWeight.bold),
+    descTextAlign: TextAlign.start,
+    animationDuration: Duration(milliseconds: 400),
+    alertBorder: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(5.0),
+      side: BorderSide(
+        color: kAccentColor,
+      ),
+    ),
+    titleStyle: TextStyle(
+      color: Colors.white,
+    ),
+    alertAlignment: Alignment.center,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,12 +61,30 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
               icon: Icon(
-                FontAwesomeIcons.music,
+                FontAwesomeIcons.volumeUp,
                 color: Colors.black,
               ),
               iconSize: 30.0,
               onPressed: () {
                 setState(() {
+                  Alert(
+                    style: alertStyle,
+                    context: context,
+                    image: Image.asset("assets/sound.png"),
+                    title: "SOUND CHECKER",
+                    desc: "Check your alert volume!",
+                    buttons: [
+                      DialogButton(
+                        child: Text(
+                          "OK",
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                        width: 120,
+                        color: kAccentColor,
+                      )
+                    ],
+                  ).show();
                   playSounds();
                 });
               })
