@@ -5,6 +5,7 @@ import 'package:the_count_down/constants.dart';
 import 'package:the_count_down/addButton.dart';
 import 'package:the_count_down/iconButton.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:countdown_flutter/countdown_flutter.dart';
 
 void main() {
   runApp(CountDown());
@@ -97,20 +98,34 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '02:45',
-              style: TextStyle(
-                  fontSize: 60.0,
-                  color: Color(0xFFF46003),
-                  fontFamily: 'Roboto Mono'),
+            Countdown(
+              duration: Duration(seconds: 10),
+              onFinish: () {
+                print('finished!');
+              },
+              builder: (BuildContext ctx, Duration remaining) {
+                return Text(
+                  '${remaining.inMinutes}:${remaining.inSeconds}',
+                  style: TextStyle(
+                      fontSize: 60.0,
+                      color: Color(0xFFF46003),
+                      fontFamily: 'Roboto Mono'),
+                );
+              },
             ),
-            Text(
-              '45:30',
-              style: TextStyle(
-                  fontSize: 120.0,
-                  color: Color(0xFFF46003),
-                  fontFamily: 'Roboto Mono',
-                  fontWeight: FontWeight.bold),
+            Countdown(
+              duration: Duration(seconds: 30),
+              onFinish: () {
+                print('finished!');
+              },
+              builder: (BuildContext ctx, Duration remaining) {
+                return Text('${remaining.inMinutes}:${remaining.inSeconds}',
+                    style: TextStyle(
+                        fontSize: 120.0,
+                        color: Color(0xFFF46003),
+                        fontFamily: 'Roboto Mono',
+                        fontWeight: FontWeight.bold));
+              },
             ),
             SizedBox(height: 20.0),
             Row(
@@ -152,6 +167,23 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class Foo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Countdown(
+        duration: Duration(seconds: 10),
+        onFinish: () {
+          print('finished!');
+        },
+        builder: (BuildContext ctx, Duration remaining) {
+          return Text('${remaining.inMinutes}:${remaining.inSeconds}');
+        },
       ),
     );
   }
