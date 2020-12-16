@@ -14,21 +14,16 @@ class addButton extends StatelessWidget {
     return RawMaterialButton(
       fillColor: Color(0xFF374240),
       padding: EdgeInsets.all(5.0),
-      constraints: BoxConstraints.tightFor(
-        width: 100.0,
-        height: 100.0,
-      ),
-      shape: StadiumBorder(),
       onPressed: onPressed,
       child: Column(
         children: [
           Text(
             setNumbers,
-            style: TextStyle(fontSize: 45.0, fontFamily: 'FredokaOne'),
+            style: TextStyle(fontSize: 40.0, fontFamily: 'FredokaOne'),
           ),
           Text(
             setHours,
-            style: TextStyle(fontSize: 20.0, fontFamily: 'FredokaOne'),
+            style: TextStyle(fontSize: 15.0, fontFamily: 'FredokaOne'),
           ),
         ],
       ),
